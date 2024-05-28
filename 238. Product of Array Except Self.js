@@ -2,6 +2,8 @@ var productExceptSelf = function (nums) {
   const toRight = []; // [24, 12, 4 , 1]
   const toLeft = []; // [1 , 1 , 2 , 6]
 
+  const res = [];
+
   let multiplierLeft = 1;
 
   for (let i = 0; i < nums.length; i++) {
@@ -30,6 +32,12 @@ var productExceptSelf = function (nums) {
     toRight.push(multiplierRight);
   }
   //console.log(toLeft, toRight);
+
+  for (let i = 0; i < toLeft.length; i++) {
+    res.push(toLeft[i] * toRight[toRight.length - i - 1]);
+  }
+
+  return res;
 
   return toLeft.map((item, index) => {
     return item * toRight[toRight.length - index - 1];
